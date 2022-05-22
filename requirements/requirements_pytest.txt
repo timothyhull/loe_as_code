@@ -1,0 +1,6 @@
+# .env file support
+python_dotenv
+
+# Python testing
+pytest
+pytest-cov

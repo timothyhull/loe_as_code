@@ -1,0 +1,53 @@
+---
+# This action performs linting and static code analysis
+
+# Name of the action
+name: Linting and Static Code Analysis
+
+# Events that trigger the action
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  linting:
+    name: Lint repository files
+    runs-on: ubuntu-latest
+
+    steps:
+      # checkout@v3 action documentation
+      # https://github.com/marketplace/actions/checkout
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Install linting packages
+      - name: Install linting packages
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --upgrade -r \
+            requirements/requirements_linting.txt
+
+      # Lint YAML (.yml/.yaml) files
+      - name: Lint YAML files
+        run: |
+          yamllint .
+
+      # Lint Python (.py) files
+      - name: Lint Python files
+        run: |
+          flake8 . --count --show-source --statistics
+
+      # Python static code analysis with bandit
+      - name: Python static code analysis
+        run: |
+          bandit -rc .bandit.yml .
+
+      # Lint markdown (.md) files
+      # markdownlint-cli action documentation
+      # https://github.com/marketplace/actions/markdownlint-cli
+      - name: markdownlint-cli
+        uses: nosborn/github-action-markdown-cli@v1.1.1
+        with:
+          files: .
+          config_file: .markdownlint.json

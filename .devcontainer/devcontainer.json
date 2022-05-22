@@ -1,0 +1,44 @@
+{
+    // Docker build instructions
+    "name": "LoE as Code",
+    "build": {
+        "dockerfile": "../Dockerfile.dev",
+        "context": ".."
+    },
+    // Visual Studio Code extensions
+    "extensions": [
+        "davidanson.vscode-markdownlint",
+        "github.vscode-pull-request-github",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-azuretools.vscode-docker",
+        "redhat.vscode-yaml",
+        "streetsidesoftware.code-spell-checker"
+    ],
+    // Ports to forward to the devcontainer
+    // "forwardPorts": [
+    //     8080
+    // ],
+    // Visual Studio Code environment configuration
+    "settings": {
+        // Set the default terminal application to bash
+        "#terminal.integrated.defaultProfile.linux#": "/bin/bash",
+        // Customize YAML formatting
+        "[yaml]": {
+            "editor.insertSpaces": true,
+            "editor.tabSize": 2,
+            "editor.autoIndent": "keep",
+            "editor.quickSuggestions": {
+                "other": true,
+                "comments": false,
+                "strings": true
+            }
+        },
+        // Set Python configuration for runtime, syntax analysis, and linting
+        "python.analysis.useImportHeuristic": true,
+        "python.formatting.provider": "autopep8",
+        "python.linting.enabled": true,
+        "python.linting.flake8Enabled": true,
+        "python.pythonPath": "/usr/local/bin/python3"
+    }
+}

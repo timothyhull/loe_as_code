@@ -1,0 +1,8 @@
+# Configuration File for Better Code Hub
+# Reference - https://bettercodehub.com/docs/configuration-manual
+
+---
+component_depth: 1
+default_excludes: true
+languages:
+  - python

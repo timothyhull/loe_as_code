@@ -1,0 +1,13 @@
+---
+# yamllint configuration customization file
+# Configuration file customization reference:
+#   https://yamllint.readthedocs.io/en/stable/configuration.html
+
+# Extend the default yamllint configuration
+extends: default
+
+rules:
+  # Allow the use of 'on' in GitHub Actions
+  truthy:
+    ignore: |
+      .github/workflows

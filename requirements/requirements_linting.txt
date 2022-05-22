@@ -1,0 +1,9 @@
+# Python formatting
+autopep8
+flake8
+
+# Static code analysis
+bandit
+
+# YAML formatting
+yamllint

@@ -1,0 +1,22 @@
+# Data formats
+pyyaml
+
+# .env file support
+python_dotenv
+
+# Python formatting
+autopep8
+flake8
+
+# Python interpreter
+ipython
+
+# Static code analysis
+bandit
+
+# Python testing
+pytest
+pytest-cov
+
+# YAML formatting
+yamllint

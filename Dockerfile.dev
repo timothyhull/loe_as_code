@@ -1,0 +1,24 @@
+# VS Code Python Development Container
+FROM python:3.10-slim-buster
+
+# Set the working directory
+WORKDIR /workspaces/loe_as_code
+
+# Update OS package list and install git
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y git
+
+# Copy the Python pip requirements file
+COPY requirements/requirements_dev.txt requirements/requirements_dev.txt
+
+# Upgrade pip and install requirements from the requirements file
+RUN python -m pip install --upgrade pip && \
+    python -m pip install -r requirements/requirements_dev.txt && \
+    rm -rf requirements
+
+# Set the PYTHONPATH environment variable
+ENV PYTHONPATH=/workspaces/loe_as_code
+
+# Start the bash prompt
+CMD ["/bin/bash"]
