@@ -4,7 +4,7 @@ pyyaml
 # .env file support
 python_dotenv
 
-# openpyxl
+# Microsoft Excel spreadsheet module
 openpyxl
 
 # Python formatting
@@ -23,3 +23,6 @@ bandit
 
 # YAML formatting
 yamllint
+
+# YAML import/export support
+pyyaml
