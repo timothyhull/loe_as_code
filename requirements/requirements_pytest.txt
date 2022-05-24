@@ -1,3 +1,6 @@
+# Microsoft Excel spreadsheet module
+openpyxl
+
 # .env file support
 python_dotenv
 
