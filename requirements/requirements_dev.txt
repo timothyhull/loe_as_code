@@ -4,6 +4,9 @@ pyyaml
 # .env file support
 python_dotenv
 
+# Microsoft Excel spreadsheet module
+openpyxl
+
 # Python formatting
 autopep8
 flake8
@@ -11,12 +14,12 @@ flake8
 # Python interpreter
 ipython
 
-# Static code analysis
-bandit
-
 # Python testing
 pytest
 pytest-cov
+
+# Static code analysis
+bandit
 
 # YAML formatting
 yamllint
