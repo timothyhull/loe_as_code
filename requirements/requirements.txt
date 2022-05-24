@@ -23,6 +23,3 @@ bandit
 
 # YAML formatting
 yamllint
-
-# YAML import/export support
-pyyaml
