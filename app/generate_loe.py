@@ -3,7 +3,10 @@
 
 # Imports - Python Standard Library
 from pathlib import Path
+from os import listdir, unlink
 from os.path import join
+from time import ctime
+from typing import List
 
 # Imports - Third-Party
 import openpyxl
@@ -13,8 +16,37 @@ import openpyxl
 # Constants
 CURRENT_DIR = Path(__file__).parent
 DATA_DIR = 'data'
-SPREADSHEET_NAME = 'New LoE.xlsx'
+SPREADSHEET_NAME = f'LoE - {ctime()}.xlsx'
 SPREADSHEET_PATH = join(CURRENT_DIR, DATA_DIR, SPREADSHEET_NAME)
+
+
+def clear_workbook_dir() -> List:
+    """ Remove existing Excel workbooks.
+
+        Args:
+            None.
+
+        Returns:
+            data_dir_files (List):
+                List of files in the data file directory.
+    """
+
+    # Set the path to the data file directory
+    data_dir = Path(SPREADSHEET_PATH).parent
+
+    # Create a list of the files in the data file directory
+    data_dir_files = listdir(data_dir)
+
+    # Remove/unlink the files in the data file directory
+    for file in data_dir_files:
+        unlink(
+            path=join(data_dir, file)
+        )
+
+    # Collect a new list of the files in the data file directory
+    data_dir_files = listdir(data_dir)
+
+    return data_dir_files
 
 
 def create_new_workbook() -> None:
@@ -24,7 +56,8 @@ def create_new_workbook() -> None:
             None.
 
         Returns:
-            None.
+            wb_name (str):
+                Path to the new spreadsheet file.
     """
 
     # Create a Workbook object
@@ -35,8 +68,20 @@ def create_new_workbook() -> None:
     ws.title = 'LoE #1'
 
     # Save the Workbook to a file
+    wb_name = join(SPREADSHEET_PATH)
     wb.save(
-        filename=join(SPREADSHEET_PATH)
+        filename=wb_name
     )
 
-    return None
+    return wb_name
+
+
+def main() -> None:
+    """ Main application. """
+
+    # Create a new Excel spreadsheet
+    create_new_workbook()
+
+
+if __name__ == '__main__':
+    main()
