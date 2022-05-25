@@ -1,0 +1,33 @@
+# Source data sample file for an LoE as Code
+---
+# Define a project
+project:
+  # Set a project details
+  name: LoE as Code Test 1
+  client: Acme
+  description: Develop Ansible automation for project XYZ.
+  
+  # Define the project tasks with resources, rates, and hours
+  tasks:
+    - name: Analysis and Design
+      resources:
+        - name: Senior Automation Engineer
+          rate: 250
+          hours: 40
+        - name: Automation Engineer
+          rate: 200
+          hours: 40
+        - name: Project Manager
+          rate: 175
+          hours: 40
+    - name: MVP Development
+      resources:
+        - name: Senior Automation Engineer
+          rate: 250
+          hours: 32
+        - name: Automation Engineer
+          rate: 200
+          hours: 160
+        - name: Project Manager
+          rate: 175
+          hours: 16
