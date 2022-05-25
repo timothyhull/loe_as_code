@@ -11,6 +11,26 @@ import app.generate_loe
 
 # Constants
 MOCK_LOE_NAME = 'LoE - Wed May 24 00:00:00 2022.xlsx'
+MOCK_SOURCE_FILE = 'source_data.yml'
+MOCK_SOURCE_DATA = {
+    'project': {
+        'name': 'Test Name',
+        'client': 'Test Client',
+        'description': 'Test description.',
+        'tasks': [
+            {
+                'name': 'Task #1',
+                'resources': [
+                    {
+                        'hours': 40,
+                        'name': 'Resource #1',
+                        'rate': 250
+                    }
+                ]
+            }
+        ]
+    }
+}
 
 
 @patch.object(
@@ -58,7 +78,40 @@ def test_create_new_workbook(
             None.
     """
 
+    # Set a mock return value for create_new_workbook
     new_workbook.return_value = MOCK_LOE_NAME
 
-    # Confirm the create_new_workbook function returns None
+    # Confirm the create_new_workbook function returns the Mock return value
     assert app.generate_loe.create_new_workbook() == MOCK_LOE_NAME
+
+
+@patch.object(
+    target=app.generate_loe,
+    attribute='read_source_data'
+)
+def test_read_source_data(
+    source_data: MagicMock
+) -> None:
+    """ Test the read_source_data function.
+
+        Args:
+            source_data (unittest.mock.MagicMock):
+                Mock return object for the read_source_data
+                function.
+
+        Returns:
+            None.
+    """
+
+    # Set a mock return value for read_source_data
+    source_data.return_value = MOCK_SOURCE_DATA
+
+    # Collect mock source data
+    source_data = app.generate_loe.read_source_data(
+        data_file=MOCK_SOURCE_FILE
+    )
+
+    # Confirm the read_source_data function returns the mock return value
+    assert source_data == MOCK_SOURCE_DATA
+
+    return None
