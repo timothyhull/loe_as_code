@@ -6,10 +6,11 @@ from pathlib import Path
 from os import listdir, unlink
 from os.path import join
 from time import ctime
-from typing import List
+from typing import Dict, List
 
 # Imports - Third-Party
 import openpyxl
+from yaml import safe_load
 
 # Imports - Local
 
@@ -18,6 +19,9 @@ CURRENT_DIR = Path(__file__).parent
 DATA_DIR = 'data'
 SPREADSHEET_NAME = f'LoE - {ctime()}.xlsx'
 SPREADSHEET_PATH = join(CURRENT_DIR, DATA_DIR, SPREADSHEET_NAME)
+SOURCE_DATA_DIR = 'source'
+SOURCE_DATA_FILE_NAME = 'source_data.yml'
+SOURCE_DATA_FILE_PATH = join(CURRENT_DIR, SOURCE_DATA_DIR)
 
 
 def clear_workbook_dir() -> List:
@@ -76,11 +80,38 @@ def create_new_workbook() -> None:
     return wb_name
 
 
+def read_source_data(
+    data_file: str = SOURCE_DATA_FILE_NAME
+) -> Dict:
+    """ Read source YAML file.
+
+        Args:
+            data_file (str):
+                Name of the source data YAML file.
+
+        Returns:
+            project_data (Dict):
+                Project source data as dictionary data.
+    """
+
+    with open(
+        file=join(SOURCE_DATA_FILE_PATH, data_file),
+        mode='rt',
+        encoding='utf-8'
+    ) as source_data:
+
+        project_data = safe_load(
+            stream=source_data
+        )
+
+    return project_data
+
+
 def main() -> None:
     """ Main application. """
 
     # Create a new Excel spreadsheet
-    create_new_workbook()
+    # create_new_workbook()
 
 
 if __name__ == '__main__':
