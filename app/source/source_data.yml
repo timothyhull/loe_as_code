@@ -6,7 +6,7 @@ project:
   name: LoE as Code Test 1
   client: Acme
   description: Develop Ansible automation for project XYZ.
-  
+
   # Define the project tasks with resources, rates, and hours
   tasks:
     - name: Analysis and Design
