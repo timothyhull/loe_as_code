@@ -107,11 +107,55 @@ def read_source_data(
     return project_data
 
 
+def create_loe(
+    project_data: Dict
+) -> None:
+    """ Create an LoE Excel spreadsheet with source data.
+
+        Args:
+            project_data (Dict):
+                Project data imported from a YAML file.
+
+        Returns:
+            None.
+    """
+
+    # Create a new Excel spreadsheet
+    wb_name = create_new_workbook()
+
+    # Load the workbook file
+    wb = openpyxl.load_workbook(
+        filename=wb_name
+    )
+
+    # Assign the first worksheet to a variable
+    ws_1 = wb[wb.worksheets[0]]
+
+    # Set the project name in the first cell
+    ws_1.cell(
+        row=1,
+        column=1
+    ).value = project_data['project']['name']
+
+    # Set the project client in the second cell
+    ws_1.cell(
+        row=2,
+        column=1
+    ).value = project_data['project']['name']
+
+    # Set the project description in the third cell
+    ws_1.cell(
+        row=3,
+        column=1
+    ).value = project_data['project']['description']
+
+    return None
+
+
 def main() -> None:
     """ Main application. """
 
-    # Create a new Excel spreadsheet
-    # create_new_workbook()
+    return None
 
 
 if __name__ == '__main__':
