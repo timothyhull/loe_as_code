@@ -149,13 +149,13 @@ class LoEObject:
         ws_1 = wb[wb.worksheets[0].title]
 
         # Set the project name in the first cell
-        ws_1.cell['a1'] = self.project_data['project']['name']
+        ws_1['a1'] = self.project_data['project']['name']
 
         # Set the project client in the second cell
-        ws_1.cell['b1'] = self.project_data['project']['name']
+        ws_1['b1'] = self.project_data['project']['name']
 
         # Set the project description in the third cell
-        ws_1.cell['c1'] = self.project_data['project']['description']
+        ws_1['c1'] = self.project_data['project']['description']
 
         # Save the workbook
         wb.save(
