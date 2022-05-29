@@ -1,10 +1,11 @@
 #!/usr/bin/env pytest
-""" pytest tests for /app/generate_loe.py """
+""" pytest tests for app/loe_object.py """
 
 # Imports - Python Standard Library
 from unittest.mock import patch, MagicMock
 
 # Imports - Third-Party
+# None
 
 # Imports - Local
 import app.generate_loe
