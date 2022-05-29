@@ -8,7 +8,7 @@ from unittest.mock import patch, MagicMock
 # None
 
 # Imports - Local
-import app.generate_loe
+from app.loe_object import LoEObject
 
 # Constants
 MOCK_LOE_NAME = 'LoE - Wed May 24 00:00:00 2022.xlsx'
@@ -35,7 +35,7 @@ MOCK_SOURCE_DATA = {
 
 
 @patch.object(
-    target=app.generate_loe,
+    target=LoEObject,
     attribute='clear_workbook_dir'
 )
 def test_clear_workbook_dir(
@@ -55,14 +55,14 @@ def test_clear_workbook_dir(
     mock_list.return_value = list()
 
     # Mock a call to the clear_workbook_dir function
-    data_dir_files = app.generate_loe.clear_workbook_dir()
+    data_dir_files = LoEObject.clear_workbook_dir()
 
     # Confirm the response object to the mock function call is an empty list
     assert data_dir_files == list()
 
 
 @patch.object(
-    target=app.generate_loe,
+    target=LoEObject,
     attribute='create_new_workbook'
 )
 def test_create_new_workbook(
@@ -83,11 +83,11 @@ def test_create_new_workbook(
     new_workbook.return_value = MOCK_LOE_NAME
 
     # Confirm the create_new_workbook function returns the Mock return value
-    assert app.generate_loe.create_new_workbook() == MOCK_LOE_NAME
+    assert LoEObject.create_new_workbook() == MOCK_LOE_NAME
 
 
 @patch.object(
-    target=app.generate_loe,
+    target=LoEObject,
     attribute='read_source_data'
 )
 def test_read_source_data(
@@ -108,7 +108,7 @@ def test_read_source_data(
     source_data.return_value = MOCK_SOURCE_DATA
 
     # Collect mock source data
-    source_data = app.generate_loe.read_source_data(
+    source_data = LoEObject.read_source_data(
         data_file=MOCK_SOURCE_FILE
     )
 
